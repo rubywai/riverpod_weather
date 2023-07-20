@@ -15,7 +15,14 @@ class CitySearchProvider extends Notifier<CitySearchState>{
   late final CitySearchService _citySearchService = CitySearchService(_dio);
   void searchCity(String name) async{
     citySearchState = CitySearchLoading();
-    CitySearchResult citySearchResult = await _citySearchService.searchCity(name: name, count: 10, language: 'en', format: 'json');
+    try {
+      CitySearchResult citySearchResult = await _citySearchService.searchCity(
+          name: name, count: 10, language: 'en', format: 'json');
+      citySearchState = CitySearchSuccess(citySearchResult);
+    }
+    catch(e){
+      citySearchState = CitySearchFailed(e.toString());
+    }
   }
 
 }

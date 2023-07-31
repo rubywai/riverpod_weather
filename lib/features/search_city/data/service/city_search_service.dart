@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:retrofit/http.dart';
 import 'package:riverpod_weather_lesson/common/const/api_const.dart';
 

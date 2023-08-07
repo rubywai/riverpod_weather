@@ -3,12 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_weather_lesson/features/current_weather/ui/screen/current_weather_screen.dart';
 import 'package:riverpod_weather_lesson/features/search_city/ui/screen/city_search_screen.dart';
+import 'package:riverpod_weather_lesson/features/theme/provider/theme_provider.dart';
+import 'package:riverpod_weather_lesson/features/theme/provider/theme_state.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({Key? key}) : super(key: key);
   final _router = GoRouter(routes: [
     GoRoute(
@@ -29,9 +31,14 @@ class MyApp extends StatelessWidget {
   ]);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    WeatherTheme weatherTheme = ref.watch(themeProvider);
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: weatherTheme.getTheme(),
       routerConfig: _router,
     );
   }
+
+
 }

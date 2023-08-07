@@ -33,7 +33,16 @@ class _CurrentWeatherState extends ConsumerState<CurrentWeatherScreen> {
   Widget build(BuildContext context) {
     final currentWeatherState = ref.watch(currentWeatherProvider);
     return Scaffold(
-      body: _weatherWidget(currentWeatherState),
+      body: Stack(
+        children: [
+          _weatherWidget(currentWeatherState),
+          SafeArea(
+            child: IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Icon(Icons.arrow_back)),
+          ),
+        ],
+      ),
     );
   }
 

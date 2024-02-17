@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_weather_lesson/common/utils/weather_code.dart';
@@ -36,10 +37,11 @@ class _CurrentWeatherState extends ConsumerState<CurrentWeatherScreen> {
       body: Stack(
         children: [
           _weatherWidget(currentWeatherState),
+          if(!kIsWeb)
           SafeArea(
             child: IconButton(onPressed: (){
               Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back)),
+            }, icon: const Icon(Icons.arrow_back)),
           ),
         ],
       ),

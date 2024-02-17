@@ -13,13 +13,12 @@ class RouteList{
             return const CitySearchScreen();
           }),
       GoRoute(
-          path: '/current',
+          path: '/current/:lati/:longi/:city',
           builder: (context, routeState) {
-            final query = routeState.extra as Map;
             return CurrentWeatherScreen(
-              latitude: query['lati']!,
-              longitude: query['longi']!,
-              city: query['city']!,
+              latitude: routeState.pathParameters['lati'] ?? '',
+              longitude: routeState.pathParameters['longi'] ?? '',
+              city: routeState.pathParameters['city'] ?? '',
             );
           }),
     ]),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_weather_lesson/features/search_city/data/model/city_search_result.dart';
@@ -18,11 +19,12 @@ class CityList extends StatelessWidget {
           Results? results = cities?[position];
           return InkWell(
             onTap: () {
-              context.push('/current', extra: {
-                'lati': results?.latitude?.toString(),
-                'longi': results?.longitude?.toString(),
-                'city' : results?.name
-              });
+              if(kIsWeb){
+                context.go('/current/${results?.latitude}/${results?.longitude}/${results?.name}');
+              }
+              else {
+                context.push('/current/${results?.latitude}/${results?.longitude}/${results?.name}');
+              }
             },
             child: Card(
               child: Row(

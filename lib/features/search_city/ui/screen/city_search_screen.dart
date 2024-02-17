@@ -48,7 +48,13 @@ class _CitySearchScreenState extends ConsumerState<CitySearchScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              keyboardType: TextInputType.url,
               controller: _citySearchTextController,
+              onSubmitted: (str){
+                if(str.isNotEmpty){
+                  provider.searchCity(str);
+                }
+              },
               decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: 'Search city',

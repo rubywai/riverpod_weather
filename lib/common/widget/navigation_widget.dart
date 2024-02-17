@@ -21,7 +21,8 @@ class NavigationWidget extends StatelessWidget {
           destinations: const [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(
-                icon: Icon(Icons.settings), label: 'Settings'),
+                icon: Icon(Icons.settings), label: 'Settings',
+            selectedIcon: Icon(Icons.border_all),),
           ],
         ),
       );
@@ -30,6 +31,7 @@ class NavigationWidget extends StatelessWidget {
           body: Row(
         children: [
           NavigationRail(
+            labelType: NavigationRailLabelType.all,
             onDestinationSelected: (index) {
               shell.goBranch(index);
             },

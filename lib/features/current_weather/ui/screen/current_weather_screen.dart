@@ -25,9 +25,16 @@ class CurrentWeatherScreen extends ConsumerStatefulWidget {
 
 class _CurrentWeatherState extends ConsumerState<CurrentWeatherScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      _getWeather();
+    });
+  }
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _getWeather();
   }
 
   @override
